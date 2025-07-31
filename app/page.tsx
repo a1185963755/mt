@@ -35,6 +35,22 @@ export default function Component() {
 
         if (data.isValid) {
           setCodeValidationStatus("valid");
+          if (data.couponData?.length > 0) {
+            setClaimStatus("success");
+            setClaimMessage("恭喜您，红包领取成功！");
+            toast({
+              title: "领取成功",
+              description: "您的美团红包已成功到账。",
+              variant: "default",
+            });
+            setCouponData(() => data.couponData);
+            setKeyCardInfo(() => {
+              return {
+                code,
+                ...data.info,
+              };
+            });
+          }
         } else {
           setCodeValidationStatus("invalid");
         }
