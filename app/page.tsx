@@ -9,6 +9,7 @@ import { Copy, Gift, Clock, User, CheckCircle, Play, ExternalLink, XCircle, Load
 import { toast } from "@/hooks/use-toast";
 import { Badge } from "@/components/ui/badge";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import Image from "next/image";
 
 type ClaimStatus = "idle" | "loading" | "success" | "failure";
 type CodeValidationStatus = "checking" | "valid" | "invalid";
@@ -346,7 +347,13 @@ export default function Component() {
           </CardHeader>
           <CardContent className="p-6 pt-0">
             <div className="space-y-6">
-              <img src="/images/1.png" alt="获取链接教程" className="w-full h-auto" />
+              <Image
+                src="/images/1.png"
+                alt="示例图片"
+                width={500}
+                height={300}
+                priority // 可选：预加载重要图片
+              />
             </div>
           </CardContent>
         </Card>
