@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import dayjs from "dayjs";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -16,7 +17,16 @@ export async function GET(request: Request) {
     });
     const verifyCodeData = await verifyCode.json();
     if (verifyCodeData.success) {
-      return NextResponse.json({ isValid: true, message: "卡密校验成功" });
+      const body = {
+        isValid: true,
+        message: "卡密校验成功",
+        couponData: JSON.parse(verifyCodeData.data.coupon_info),
+        info: {
+          user: JSON.parse(verifyCodeData.data.coupon_info)?.[0]?.user ?? null,
+          usedTime: verifyCodeData.data?.firstUseTime ? dayjs(verifyCodeData.data?.firstUseTime).format("YYYY-MM-DD HH:mm:ss") : null,
+        },
+      };
+      return NextResponse.json(body);
     } else {
       return NextResponse.json({ isValid: false, message: "卡密无效" }, { status: 401 });
     }
