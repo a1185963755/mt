@@ -162,6 +162,9 @@ export default function Component() {
   };
 
   const resetClaim = () => {
+    if (claimStatus === "success") {
+      return;
+    }
     setClaimStatus("idle");
     setClaimMessage("");
     setLinkUrl("");
@@ -241,6 +244,16 @@ export default function Component() {
                       "立即领取"
                     )}
                   </Button>
+                  <div className="mt-6 text-center">
+                    <Button
+                      variant="outline"
+                      className="w-full border-blue-200 text-blue-600 hover:bg-blue-50 bg-transparent"
+                      size="sm"
+                      onClick={() => window.open("https://passport.meituan.com/useraccount/ilogin", "_blank")}
+                    >
+                      前往获取链接
+                    </Button>
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -451,40 +464,6 @@ export default function Component() {
                   </div>
                 </div>
               </div>
-            </div>
-
-            <div className="mt-6 text-center">
-              <Button
-                variant="outline"
-                className="w-full border-blue-200 text-blue-600 hover:bg-blue-50 bg-transparent"
-                size="sm"
-                onClick={() => window.open("https://passport.meituan.com/useraccount/ilogin", "_blank")}
-              >
-                前往获取链接
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Tutorial Video Card */}
-        <Card className="shadow-lg border-0 bg-white/90 backdrop-blur-sm">
-          <CardHeader>
-            <CardTitle className="text-center text-lg font-bold text-gray-800">领券视频教程</CardTitle>
-          </CardHeader>
-          <CardContent className="p-6 pt-0">
-            <div className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl overflow-hidden shadow-inner">
-              <div className="aspect-video flex items-center justify-center">
-                <div className="text-center text-white space-y-4">
-                  <div className="w-16 h-16 mx-auto bg-white/10 rounded-full flex items-center justify-center backdrop-blur-sm">
-                    <Play className="w-8 h-8 text-white ml-1" />
-                  </div>
-                  <p className="text-sm opacity-90">点击播放教程视频</p>
-                </div>
-              </div>
-              {/* <Button className="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white border-0" size="sm">
-                进入群聊群聊观看
-                <ExternalLink className="w-4 h-4 ml-1" />
-              </Button> */}
             </div>
           </CardContent>
         </Card>
