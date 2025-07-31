@@ -273,16 +273,27 @@ export default function Component() {
                 {claimStatus === "success" && (
                   <div className="pt-2 border-t mt-4">
                     <span className="text-gray-600 font-medium mb-3 block">您已领取以下红包:</span>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      {couponData.map((coupon, index) => (
-                        <div
-                          key={index}
-                          className={`${coupon.color} bg-green-50 text-xs py-2 px-3 rounded-md border border-green-200 flex items-center`}
-                        >
-                          <Ticket className="w-3 h-3 mr-1" /> {/* Changed icon here */}
-                          {coupon.text}
-                        </div>
-                      ))}
+                    <div className="grid grid-cols-3 gap-1">
+                      {couponData.map((coupon, index) => {
+                        const [couponName, discountInfo] = coupon.text.split("|");
+                        const [fullAmount, discountAmount] = discountInfo ? discountInfo.split("-") : ["", ""];
+
+                        return (
+                          <div
+                            key={index}
+                            className="bg-gradient-to-br from-red-500 to-orange-500 text-white py-2 px-1 rounded-md shadow-sm flex flex-col items-center justify-center text-center min-h-[48px] transition-transform duration-200 hover:scale-105"
+                          >
+                            <div className="text-[11px] font-medium mb-0.5 leading-tight opacity-90 truncate w-full">{couponName}</div>
+                            <div className="flex flex-col items-center">
+                              <span className="text-base font-bold leading-none">¥{discountAmount}</span>
+                              <div className="flex items-center text-[10px] opacity-80 leading-none">
+                                <span>满</span>
+                                <span className="font-semibold ml-0.5">¥{fullAmount}</span>
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
                 )}
