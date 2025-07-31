@@ -202,8 +202,8 @@ export default function Component() {
         <Card className="shadow-lg border-0 bg-white/90 backdrop-blur-sm">
           <CardHeader className="text-center pb-4">
             <div className="flex items-center justify-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-xl flex items-center justify-center shadow-md">
-                <Gift className="w-6 h-6 text-white" />
+              <div className="w-10 h-10  rounded-xl flex items-center justify-center ">
+                <Image src="/icon.png" alt="美团外卖红包" width={24} height={24} />
               </div>
               <CardTitle className="text-xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
                 美团外卖红包
