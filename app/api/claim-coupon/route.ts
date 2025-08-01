@@ -8,10 +8,12 @@ export async function POST(request: Request) {
     return NextResponse.json({ success: false, message: "链接不能为空" });
   }
   let token;
+  let userId;
   try {
     const searchParams = new URLSearchParams(new URL(linkUrl).search);
     token = searchParams.get("token");
-    if (!token) {
+    userId = searchParams.get("userId");
+    if (!token || !userId) {
       return NextResponse.json({ success: false, message: "链接参数错误" });
     }
   } catch (error) {
@@ -22,6 +24,7 @@ export async function POST(request: Request) {
     method: "POST",
     body: JSON.stringify({
       mtToken: token,
+      userId,
     }),
     headers: {
       "Content-Type": "application/json",
